@@ -1,0 +1,36 @@
+import java.nio.file.Path;
+import java.nio.file.Paths;
+String homeDir = System.getProperty("user.home");
+
+System.out.println(java.nio.file.Files.exists(java.nio.file.Paths.get(homeDir).resolve("temp").resolve("11 бр.xlsx")));
+
+
+Systetm.
+
+
+java.util.Scanner sc = new java.util.Scanner(System.in);
+
+System.out.println("Enter number");
+double i = sc.nextDouble();
+
+System.out.println("Your choice is: " + i);
+
+if (System.console() == null) {
+	System.out.println("console not found");
+}
+
+
+String ints = "12 13 33 dd 33.3";
+
+java.util.Scanner sc = new java.util.Scanner(ints);
+
+while (sc.hasNext()) {
+	System.out.println(sc.next());
+}	
+
+
+
+
+
+
+
