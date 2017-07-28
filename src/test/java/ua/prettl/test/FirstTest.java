@@ -6,10 +6,14 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import org.junit.jupiter.params.provider.ValueSource;
+import org.junit.platform.runner.JUnitPlatform;
+import org.junit.runner.RunWith;
+
 import ua.prettl.utils.Utils;
 
 
 @DisplayName("Simple test suite")
+@RunWith(JUnitPlatform.class)
 class FirstTest {
 
     @Test
