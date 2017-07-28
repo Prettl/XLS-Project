@@ -1,20 +1,13 @@
 package ua.prettl.integrated;
 
-import java.io.IOException;
-import java.nio.file.Files;
 import java.nio.file.Paths;
+import java.util.stream.Stream;
 
-import org.apache.poi.ss.usermodel.CellType;
-import org.apache.poi.xssf.usermodel.XSSFCell;
-import org.apache.poi.xssf.usermodel.XSSFRow;
-import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.DisplayName;
-import org.junit.jupiter.api.Test;
-import org.junit.jupiter.api.TestInfo;
+import org.junit.jupiter.params.ParameterizedTest;
+import org.junit.jupiter.params.provider.Arguments;
+import org.junit.jupiter.params.provider.MethodSource;
 import org.junit.platform.runner.JUnitPlatform;
 import org.junit.runner.RunWith;
 
@@ -24,95 +17,48 @@ import ua.prettl.utils.Utils;
 @RunWith(JUnitPlatform.class)
 class FindFirstAndLastRowTest {
 	
-	private int colTabNumber = 2 - 1;
+	private static String XLSX_TEST_DIR = "src/test/resources/manufacturer";
 	
-	private static XSSFWorkbook workbook;
-	private static XSSFSheet sheet;
-	private static String XLSX_FILE = "src/test/resources/11 бр.xlsx";
-	
-	
-	
-	@BeforeAll
-	static void setupForAll() {
-		try {
-			workbook = new XSSFWorkbook(XLSX_FILE);
-			sheet = workbook.getSheetAt(0);
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	
-	@AfterAll
-	static void destroyResources() {
-		try {
-			workbook.close();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-	
-	@Test
-	@DisplayName("File should exists")
-	void test1(TestInfo info) {
-		Assertions.assertTrue(Files.exists(Paths.get(XLSX_FILE)));
-	}
-	
-	@Test
-	@DisplayName("find first and last row with tab number")
-	void test2() {
-		int expectedFirstRow = 7;
-		int expectedLastRow = 22;
+	@DisplayName(value="Group of test for checking range of rows:")
+	@ParameterizedTest(name= "{index} -> file: {0} (firstRow:{1} lastRow:{2})")
+	@MethodSource("fileToTestProvider")
+	void testWithMultiArgMethodSource(String name, int expectedFirstRow, int expectedLastRow) {
 		
-		int actualFirstRow = -1;
-		int actualLastRow = -1;
+		int[] rows = Utils.rowRangeFor(Paths.get(XLSX_TEST_DIR).resolve(name).toFile(), 1);
 		
-		for (int i = sheet.getFirstRowNum(); i <= sheet.getLastRowNum(); i++) {
-						
-			XSSFRow row = sheet.getRow(i);
-			
-			if (row == null) continue;
-			
-			XSSFCell cell = row.getCell(colTabNumber);
-			
-			if (cell == null) continue; 
-			
-			CellType cellType = cell.getCellTypeEnum();
-			
-			switch (cellType) {
-			case STRING:
-				String value = cell.getStringCellValue();
-				boolean isTableNumber = Utils.matchesNumber(value);
-				
-				if (isTableNumber && (actualFirstRow == -1)) {
-					actualFirstRow = i + 1;
-				} else if (isTableNumber && (i == sheet.getLastRowNum())) {
-					actualLastRow = i + 1;
-				}
-				
-				break;
+		Assertions.assertEquals(expectedFirstRow, rows[0]);
+		Assertions.assertEquals(expectedLastRow, rows[1]);
+		
+		
+	
+	}
 
-			default:
-				break;
-			}
-			
-			
-			
-			
-			
-			
-		}
-		
-		
-		
-		Assertions.assertEquals(expectedFirstRow, actualFirstRow);
-		Assertions.assertEquals(expectedLastRow, actualLastRow);
-		
-		
-		
-		
-		
-		
+	static Stream<Arguments> fileToTestProvider() {
+	    return Stream.of(
+	    		
+	    		Arguments.of("11 бр.xlsx", 7, 22),
+	    		Arguments.of("12 бр.xlsx", 7, 18),
+	    		Arguments.of("13 бр.xlsx", 7, 19),
+	    		Arguments.of("21 бр.xlsx", 7, 15),
+	    		Arguments.of("22 бр.xlsx", 7, 18),
+	    		Arguments.of("23 бр.xlsx", 7, 18),
+	    		Arguments.of("31 бр.xlsx", 7, 28),
+	    		Arguments.of("32 бр.xlsx", 7, 29),
+	    		Arguments.of("33 бр.xlsx", 7, 29),
+	    		Arguments.of("41.xlsx", 7, 38),
+	    		Arguments.of("42.xlsx", 7, 43),
+	    		Arguments.of("43.xlsx", 7, 42),
+	    		Arguments.of("44.xlsx", 7, 39),
+	    		Arguments.of("45.xlsx", 7, 42),
+	    		Arguments.of("46.xlsx", 7, 32),
+	    		Arguments.of("47.xlsx", 7, 30),
+	    		Arguments.of("49.xlsx", 7, 13),
+	    		Arguments.of("50.xlsx", 7, 38),
+	    		Arguments.of("empty.xlsx", -1, -1),
+	    		Arguments.of("50_with_skipped_rows.xlsx", 7, 41),
+	    		Arguments.of("50_ended_with_empty_rows.xlsx", 7, 41)
+	    		
+	    		);
 	}
 	
 }
