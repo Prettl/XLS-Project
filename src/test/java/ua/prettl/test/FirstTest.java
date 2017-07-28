@@ -25,11 +25,18 @@ class FirstTest {
     }
 
     @ParameterizedTest(name = "{index}, {0}")
-    @ValueSource(strings = { "00/0010", "00/1231", "10/0001", "00/11111" })
+    @ValueSource(strings = { "00/0010", "00/1231", "10/0001", "00/1111" })
     void testWithStringParameter(String argument) {
         Assertions.assertTrue(Utils.matchesNumber(argument));
     }
 
+    @ParameterizedTest(name = "{index}, {0}")
+    @ValueSource(strings = { "f0/0010", "001231", "33/fff001", "00/f111" })
+    @DisplayName("This is'nt matched cases")
+    void testWithStringParameterShouldNotMatch(String argument) {
+        Assertions.assertTrue(!Utils.matchesNumber(argument));
+    }
+    
     @DisplayName("From csv")
     @ParameterizedTest(name = "{index}, argument = {0}, actual={1}")
     @CsvFileSource(resources = {"/test_matches_number.csv"})
