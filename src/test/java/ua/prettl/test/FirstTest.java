@@ -21,7 +21,7 @@ class FirstTest {
     }
 
     @ParameterizedTest(name = "{index}, {0}")
-    @ValueSource(strings = { "00/0010", "00/1231", "10/0001" })
+    @ValueSource(strings = { "00/0010", "00/1231", "10/0001", "00/11111" })
     void testWithStringParameter(String argument) {
         Assertions.assertTrue(Utils.matchesNumber(argument));
     }
