@@ -2,12 +2,28 @@ package ua.prettl.downloading.model;
 
 public class Employee {
 	
+	public static final String COL_NAME = "colName";
+	public static final String COL_AUTHORIZATION_NAME = "colAuthorizationCode";
+	public static final String COL_EMPLOYEE_NUMBER = "colTabNumber";
+	public static final String COL_SURNAME = "colSurname";
+	public static final String COL_MIDDLE_NAME = "colMiddleName";
+		
 	private String authorizationCode;
 	private String employeeNumber;
 	private String surName;
 	private String name;
 	private String middleName;
 	
+	public Employee() {}
+	
+	public Employee(String authorizationCode, String employeeNumber, String surName, String name, String middleName) {
+		super();
+		this.authorizationCode = authorizationCode;
+		this.employeeNumber = employeeNumber;
+		this.surName = surName;
+		this.name = name;
+		this.middleName = middleName;
+	}
 	public String getAuthorizationCode() {
 		return authorizationCode;
 	}

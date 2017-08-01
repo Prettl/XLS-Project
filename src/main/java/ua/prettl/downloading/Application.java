@@ -4,6 +4,10 @@ import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+
+import ua.prettl.downloading.model.Employee;
 
 public class Application {
 
@@ -17,6 +21,8 @@ public class Application {
 	      Statement stmt = null;  
 	      ResultSet rs = null;  
 
+	      List<Employee> employees = new ArrayList<>();
+	      
 	      try {  
 	         // Establish the connection.  
 	         Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");  
@@ -27,9 +33,18 @@ public class Application {
 	         stmt = con.createStatement();  
 	         rs = stmt.executeQuery(SQL);  
 
+	         
+	         
 	         // Iterate through the data in the result set and display it.  
 	         while (rs.next()) {  
-	            System.out.println(rs.getString("colName"));  
+	        	 
+	        	employees.add(new Employee(
+	        			rs.getString(Employee.COL_AUTHORIZATION_NAME),
+	        			rs.getString(Employee.COL_EMPLOYEE_NUMBER),
+	        			rs.getString(Employee.COL_SURNAME), //surname
+	        			rs.getString(Employee.COL_NAME), //name
+	        			rs.getString(Employee.COL_MIDDLE_NAME))); //middleName
+	        	 
 	         }  
 	      }  
 
@@ -42,6 +57,8 @@ public class Application {
 	         if (stmt != null) try { stmt.close(); } catch(Exception e) {}  
 	         if (con != null) try { con.close(); } catch(Exception e) {}  
 	      } 
+	      
+	      System.out.println(employees);
 
 	}
 
