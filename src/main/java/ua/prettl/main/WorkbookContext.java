@@ -1,4 +1,4 @@
-package ua.prettl.ua.prettl.app;
+package ua.prettl.main;
 
 public class WorkbookContext {
 }

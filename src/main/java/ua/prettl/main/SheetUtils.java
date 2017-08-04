@@ -1,4 +1,4 @@
-package ua.prettl.ua.prettl.app;
+package ua.prettl.main;
 
 import jdk.nashorn.internal.ir.Block;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;

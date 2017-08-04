@@ -1,4 +1,4 @@
-package ua.prettl.ua.prettl.app;
+package ua.prettl.main;
 
 import com.google.gson.Gson;
 import org.apache.commons.cli.*;
@@ -383,9 +383,10 @@ public class Main {
         final int colFirstDay = 4;
 
         for (File f : files) {
-            String p = f.getAbsolutePath();
+            
+        	String p = f.getAbsolutePath();
             String t = "11 бригада";
-
+                       
             listConfig.add(new Configuration.Builder()
                     .path(p)
                     .team(t)

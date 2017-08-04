@@ -1,7 +1,8 @@
 package ua.prettl;
 
 import com.google.gson.Gson;
-import ua.prettl.ua.prettl.app.Configuration;
+
+import ua.prettl.main.Configuration;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;
