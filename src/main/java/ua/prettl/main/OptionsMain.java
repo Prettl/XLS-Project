@@ -7,9 +7,13 @@ import org.apache.commons.cli.HelpFormatter;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class OptionsMain {
 
+	private static final Logger logger = LoggerFactory.getLogger(OptionsMain.class);
+	
 	public static void main(String[] args) {
 		Options options = new Options();
 		
@@ -30,6 +34,7 @@ public class OptionsMain {
 			CommandLine cl = parser.parse(options, args);
 			
 			if (cl.hasOption("m")) {
+				
 				String mode  = cl.getOptionValue("m");
 				
 				if (mode.toUpperCase().equals("MAP")) {
@@ -41,7 +46,7 @@ public class OptionsMain {
 					
 				}
 				
-				
+				logger.debug("Mode {}", mode);
 				
 				
 			} else {

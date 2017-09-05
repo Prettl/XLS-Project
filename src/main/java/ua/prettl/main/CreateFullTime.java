@@ -23,6 +23,9 @@ import org.apache.poi.xssf.usermodel.XSSFSheet;
 import org.apache.poi.xssf.usermodel.XSSFWorkbook;
 
 public class CreateFullTime {
+	
+	
+	
 	private static final String PATH = "C:\\Users\\aeu.adm\\Documents\\salary_august\\OTHER_1C_PI.xlsm";
 	private static final String NEW_PATH = "C:\\Users\\aeu.adm\\Documents\\salary_august\\OTHER_1C_PI_tabel.xlsm";
 	
