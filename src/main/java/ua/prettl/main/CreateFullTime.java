@@ -26,15 +26,15 @@ public class CreateFullTime {
 	
 	
 	
-	private static final String PATH = "C:\\Users\\aeu.adm\\Documents\\salary_august\\OTHER_1C_PI.xlsm";
-	private static final String NEW_PATH = "C:\\Users\\aeu.adm\\Documents\\salary_august\\OTHER_1C_PI_tabel.xlsm";
+	private static final String PATH = "C:\\Users\\aeu.adm\\Documents\\Аванс вересень\\INDERECT_1C_PI.xlsm";
+	private static final String NEW_PATH = "C:\\Users\\aeu.adm\\Documents\\Аванс вересень\\INDERECT_1C.xlsm";
 	
 	public static void main(String... args) {
 			
 		int from = 2;
-		int to = 6;
+		int to = 127;
 		int columnFrom = 3;
-		int columnTo = 33;
+		int columnTo = 17;
 		
 		if (Files.exists(Paths.get(PATH))) {
 			//1.

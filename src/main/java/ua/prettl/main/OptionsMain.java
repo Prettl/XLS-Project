@@ -40,7 +40,7 @@ public class OptionsMain {
 				if (mode.toUpperCase().equals("MAP")) {
 					//generate map
 				} else if (mode.toUpperCase().equals("TIMETABLE")) {
-					//crete timetable
+					//create timetable
 				} else {
 					//print help
 					
