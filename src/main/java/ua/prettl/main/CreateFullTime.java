@@ -26,16 +26,17 @@ public class CreateFullTime {
 	
 	
 	
-	private static final String PATH = "C:\\Users\\aeu.adm\\Documents\\Аванс вересень\\INDERECT_1C_PI.xlsm";
-	private static final String NEW_PATH = "C:\\Users\\aeu.adm\\Documents\\Аванс вересень\\INDERECT_1C.xlsm";
+	private static final String PATH = "\\\\cvfile01\\AEU\\DEP\\IT\\SALARY OCTOBER\\ІТ в роботі_v2\\ToTimeTable\\OTHER_INDIRECT_OCTOBER_PI.xlsx";
+	private static final String NEW_PATH = "\\\\cvfile01\\AEU\\DEP\\IT\\SALARY OCTOBER\\ІТ в роботі_v2\\ToTimeTable\\OTHER_INDIRECT_OCTOBER_PI_Tab.xlsx";
 	
 	public static void main(String... args) {
-			
+
 		int from = 2;
-		int to = 127;
+		int to = 4;
+
 		int columnFrom = 3;
-		int columnTo = 17;
-		
+		int columnTo = 33;
+
 		if (Files.exists(Paths.get(PATH))) {
 			//1.
 			//saveUniqueScheduleValuesToXLSX(scanSchedule(PATH, from, to, columnFrom, columnTo), PATH);
